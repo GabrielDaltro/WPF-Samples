@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Center">
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label FontSize="20" Name="DateLabel" HorizontalAlignment="Right">Hello World at </Label>
+            <Label FontSize="20" Name="HelloLabel" HorizontalAlignment="Right">Hello World at </Label>
             <Label FontSize="20" Name="DateValue" HorizontalAlignment="Left" Grid.Column="1">00:00:0000 00:00</Label>
         </WrapPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">

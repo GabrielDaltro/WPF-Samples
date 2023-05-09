@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Threading;
+using System.Globalization;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MultiLanguageHelloWPF
 {
@@ -24,11 +14,32 @@ namespace MultiLanguageHelloWPF
         public MainWindow()
         {
             InitializeComponent();
+            SetCulture(Thread.CurrentThread.CurrentCulture.Name);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Click Event!");
+            var button = sender as Button;
+            string? tag = button!.Tag.ToString();
+            if (!string.IsNullOrEmpty(tag))
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(tag);
+                DateValue.Content = DateTime.Now.ToString();
+                if (tag.Equals("en-US"))
+                    HelloLabel.Content = "Hello WPF at";
+                else 
+                    HelloLabel.Content = "Olá WPF as";
+            }
+        }
+
+        private void SetCulture(string tag)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(tag);
+            DateValue.Content = DateTime.Now.ToString();
+            if (tag.Equals("en-US"))
+                HelloLabel.Content = "Hello WPF at";
+            else
+                HelloLabel.Content = "Olá WPF as";
         }
     }
 }
